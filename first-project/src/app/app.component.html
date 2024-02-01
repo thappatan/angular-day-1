@@ -1,0 +1,13 @@
+<input type="text" [(ngModel)]="name">
+
+<h1 class="text-color">Hello from app {{name}}!</h1>
+
+<h1>Count : {{count}}</h1>
+<button (click)="plusCount()">+</button>
+<button (click)="minusCount()">-</button>
+
+<h2 *ngIf="isShow">Content</h2>
+<button (click)="showHideContent()">Show / Hide</button>
+
+<h2 [ngClass]="changeColor ? 'text-color-blue' : 'text-color-red'">Content Color</h2>
+<button (click)="changeColorContent()">Change Color</button>
