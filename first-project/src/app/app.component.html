@@ -1,3 +1,6 @@
+
+<hr>
+
 <input type="text" [(ngModel)]="name">
 
 <h1 class="text-color">Hello from app {{name}}!</h1>
@@ -30,5 +33,35 @@
     <br>
     age: {{user.age}}
     <br>
+    <app-my-button (onSubmit)="buttonSubmit(user)" [color]="'green'" [buttonText]="'แก้ไขข้อมูล '+ user.username"></app-my-button>
     <hr>
 </span>
+
+<form [formGroup]="userForm" (ngSubmit)="userFormSubmit()">
+    <p>
+        <label for="firstname">Firstname : </label>
+        <input formControlName="firstname" name="firstname" placeholder="Input Firstname..." />
+    </p>
+
+    <p>
+        <label for="lastname">Lastname : </label>
+        <input formControlName="lastname" name="lastname" placeholder="Input Lastname..." />
+    </p>
+
+    <p>
+        <label for="username">Username : </label>
+        <input formControlName="username" name="username" placeholder="Input Username..." />
+    </p>
+
+    <p>
+        <label for="age">Age : </label>
+        <input formControlName="age" name="age" placeholder="Input Age..." />
+    </p>
+
+    <p>
+        form invalid : {{userForm.invalid}}
+    </p>
+    <p>
+        <button [disabled]="userForm.invalid" type="submit">Submit</button>
+    </p>
+</form>

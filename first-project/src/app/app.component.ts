@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { UserModel } from './models/user.model';
 
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,10 +20,32 @@ export class AppComponent implements OnInit {
     { firstname: "user 2", lastname: "user 2", username: "user 2", age: 26 }
   ];
 
+  userForm: FormGroup = new FormGroup({
+    firstname: new FormControl("", [Validators.required]),
+    lastname: new FormControl("", [Validators.required]),
+    username: new FormControl("", [Validators.required]),
+    age: new FormControl(0)
+  });
+
   ngOnInit(): void {
     console.log("component inited")
     this.name = "Me";
     this.count = 2;
+  }
+
+  userFormSubmit(){
+    console.log(this.userForm.value);
+
+    const user: UserModel = {...this.userForm.value};
+
+    this.userListByModel.push(user);
+
+    this.userForm.reset({});
+  }
+
+  buttonSubmit(user: UserModel){
+    console.log("user : ", user);
+    this.userForm.patchValue({...user});
   }
 
   changeColorContent() {
