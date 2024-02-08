@@ -11,3 +11,24 @@
 
 <h2 [ngClass]="changeColor ? 'text-color-blue' : 'text-color-red'">Content Color</h2>
 <button (click)="changeColorContent()">Change Color</button>
+
+<br>
+
+<span *ngFor="let user of userList">
+    {{user}}
+    <br>
+</span>
+
+<br>
+
+<span *ngFor="let user of userListByModel">
+    firstname: {{user.firstname}}
+    <br>
+    lastname: {{user.lastname}}
+    <br>
+    username: {{user.username}}
+    <br>
+    age: {{user.age}}
+    <br>
+    <hr>
+</span>

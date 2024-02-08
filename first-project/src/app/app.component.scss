@@ -5,3 +5,11 @@
 .text-color-red {
     color: red;
 }
+
+.form{
+    max-width: 25rem;
+    .input{
+        width: 100%;
+        margin: 10px 0;
+    }
+}
