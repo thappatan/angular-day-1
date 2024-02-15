@@ -1,0 +1,147 @@
+<div style="margin: 10px">
+  <p-button
+    (onClick)="showNewProductDialog()"
+    label="Add New Product"
+    icon="pi pi-plus"
+  ></p-button>
+</div>
+
+<p-table [value]="productList" [tableStyle]="{ 'min-width': '50rem' }">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th style="text-align: center;">Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+    <tr>
+      <td>{{ product.id }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.description }}</td>
+      <td>{{ product.price }}</td>
+      <td>{{ product.quantity }}</td>
+      <td class="actions">
+        <p-button (onClick)="onClickEdit(product)" [rounded]="true" icon="pi pi-pencil" severity="info"></p-button>
+        <p-button (onClick)="onClickDelete(product)" [rounded]="true" icon="pi pi-trash" severity="danger"></p-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog
+  header="New Product"
+  [(visible)]="newProductDialog"
+  [modal]="true"
+  [style]="{ width: '40vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <form
+    class="form-group"
+    [formGroup]="productForm"
+    (ngSubmit)="onNewProductFormSubmit()"
+  >
+    <div class="input-text">
+      <label for="name">Name</label>
+      <input pInputText id="name" formControlName="name" />
+    </div>
+
+    <div class="input-text">
+      <label for="description">Description</label>
+      <input pInputText id="description" formControlName="description" />
+    </div>
+
+    <div class="input-text">
+      <label for="price">Price</label>
+      <p-inputNumber
+        formControlName="price"
+        inputId="currency-us"
+        mode="currency"
+        currency="THB"
+        locale="en-US"
+      >
+      </p-inputNumber>
+    </div>
+
+    <div class="input-text">
+      <label for="quantity">Quantity</label>
+      <p-inputNumber inputId="integeronly" formControlName="quantity">
+      </p-inputNumber>
+    </div>
+
+    <div class="actions">
+      <p-button
+        [disabled]="productForm.invalid"
+        label="Save"
+        type="submit"
+      ></p-button>
+      <p-button
+        (onClick)="closeNewProductDialog()"
+        label="Cancel"
+        severity="secondary"
+      ></p-button>
+    </div>
+  </form>
+</p-dialog>
+
+<p-dialog
+  header="Edit Product"
+  [(visible)]="editProductDialog"
+  [modal]="true"
+  [style]="{ width: '40vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <form
+    class="form-group"
+    [formGroup]="productForm"
+    (ngSubmit)="onEditProductFormSubmit()"
+  >
+    <div class="input-text">
+      <label for="name">Name</label>
+      <input pInputText id="name" formControlName="name" />
+    </div>
+
+    <div class="input-text">
+      <label for="description">Description</label>
+      <input pInputText id="description" formControlName="description" />
+    </div>
+
+    <div class="input-text">
+      <label for="price">Price</label>
+      <p-inputNumber
+        formControlName="price"
+        inputId="currency-us"
+        mode="currency"
+        currency="THB"
+        locale="en-US"
+      >
+      </p-inputNumber>
+    </div>
+
+    <div class="input-text">
+      <label for="quantity">Quantity</label>
+      <p-inputNumber inputId="integeronly" formControlName="quantity">
+      </p-inputNumber>
+    </div>
+
+    <div class="actions">
+      <p-button
+        [disabled]="productForm.invalid"
+        label="Save"
+        type="submit"
+      ></p-button>
+      <p-button
+        (onClick)="closeEditProductDialog()"
+        label="Cancel"
+        severity="secondary"
+      ></p-button>
+    </div>
+  </form>
+</p-dialog>
+
+<p-confirmDialog></p-confirmDialog>

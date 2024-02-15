@@ -1,0 +1,19 @@
+.input-text{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-width: 30rem;
+}
+
+.form-group{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.actions{
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+}
